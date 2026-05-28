@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pham Tung | Greed Island</title>
+    <meta name="description" content="A magical Greed Island interactive RPG portfolio for Pham Truong Tung - International Economics student @ FTU. Collect binder cards and cast spells!">
+    
+    <!-- Google Fonts: Fredoka & Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="night-mode">
+    <audio id="bg-music" src="nhacnen.mp3" loop></audio>
+    <!-- ============================================================
+         FOREST NIGHT BACKGROUND SCENE
+         ============================================================ -->
+    <div class="forest-bg-layer">
+        <!-- Static forest image -->
+        <div class="forest-bg-image"></div>
+        <!-- Moon glow pulse -->
+        <div class="moon-glow-ring"></div>
+        <!-- Animated mist layers -->
+        <div class="mist-layer mist-1"></div>
+        <div class="mist-layer mist-2"></div>
+        <div class="mist-layer mist-3"></div>
+        <!-- Firefly canvas drawn by JS -->
+        <canvas id="firefly-canvas" class="firefly-canvas"></canvas>
+        <!-- Falling leaves canvas -->
+        <canvas id="leaf-canvas" class="leaf-canvas"></canvas>
+        <!-- Dark overlay so text stays readable -->
+        <div class="forest-overlay"></div>
+    </div>
+
+
+
+    <!-- Header & Navigation -->
+    <header class="wooden-nav">
+        <div class="logo">
+            <span class="logo-icon">🃏</span>
+            <span class="logo-text">About me</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero" class="nav-link active">Home</a>
+            <a href="#experience" class="nav-link">Journey</a>
+            <a href="#sandbox" class="nav-link">Binder</a>
+            <a href="#contact" class="nav-link">Spells</a>
+            </nav>
+        <!-- Sleek glowing Email link in navigation header -->
+        <a href="mailto:phamtruongtung051@gmail.com" class="nav-email-link" title="Email Tung">
+            <span class="email-icon">📧</span>
+            <span class="email-text">phamtruongtung051@gmail.com</span>
+        </a>
+                <button id="music-toggle" class="music-toggle-btn" title="Toggle Music">🔇</button>
+        
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+
+            <!-- ── Hero Intro Banner (Top, Full-width) ── -->
+            <div class="hero-intro-banner">
+                <h1 class="hero-title hero-title-big wavy-text">✦&nbsp;Welcome to My Deck&nbsp;✦</h1>
+                <p class="hero-scroll-hint">This is my journey to become a Hunter ^^</p>
+            </div>
+
+            <!-- ── Card Deck (LEFT) & Hunter License (RIGHT) ── -->
+                        <div class="hero-content" style="display: flex; justify-content: center; align-items: center; width: 680px; max-width: 100%;">
+                <div class="hunter-card-wrapper holographic-hud-wrapper">
+                    
+                                        <!-- SVG HUD Guidelines (Randomized) -->
+                    <svg class="hud-guidelines" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet">
+                        <!-- Center is roughly (500,400) relative to the card -->
+                        <!-- Top Left (Higher and further left) -->
+                        <path class="hud-line line-tl" d="M 350,300 L 100,20 L -250,20" />
+                        <!-- Top Right (Closer and lower) -->
+                        <path class="hud-line line-tr" d="M 650,350 L 850,150 L 1100,150" />
+                        <!-- Bottom Left (Closer to center) -->
+                        <path class="hud-line line-bl" d="M 400,550 L 150,800 L -100,800" />
+                        <!-- Bottom Right (Further out) -->
+                        <path class="hud-line line-br" d="M 600,500 L 900,850 L 1250,850" />
+                        
+                        <circle cx="-250" cy="20" r="5" class="hud-point" />
+                        <circle cx="1100" cy="150" r="5" class="hud-point" />
+                        <circle cx="-100" cy="800" r="5" class="hud-point" />
+                        <circle cx="1250" cy="850" r="5" class="hud-point" />
+                    </svg>
+
+                    <!-- HUD Floating Panels (New Info) -->
+                    <div class="hud-panel panel-tl">
+                        <div class="hud-panel-content">
+                            An ambitious sophomore majoring in Economics, specializing in data-driven decision-making. Though new to the corporate world, I have honed my analytical and research skills through rigorous academic projects and self-study in Python. I am highly motivated to leverage my skills in a dynamic internship environment where I can learn, grow, and contribute
+                        </div>
+                    </div>
+                    
+                    <div class="hud-panel panel-tr">
+                        <div class="hud-panel-content">
+                            Verified user at Foreign Trade University
+                        </div>
+                    </div>
+                    
+                                        <div class="hud-panel panel-bl">
+                        <div class="hud-panel-content">
+                            My goal is to bridge the gap between economic intuition and data science, transforming raw, complex data into strategic, actionable insights that drive business optimization and sustainable growth
+                        </div>
+                    </div>
+                    
+                    <div class="hud-panel panel-br">
+                        <div class="hud-panel-content">
+                            I'm also known as Fuu in FTU Forum^^
+                        </div>
+                    </div>
+
+                    <div class="hunter-license-container" id="hunter-license-card" title="Click to activate HUD!">
+                        <div class="hunter-card-inner">
+                            
+                            <!-- Front of the Hunter License Card (Matches your image) -->
+                            <div class="hunter-card-face card-front">
+                                <div class="card-black-top">
+                                    <div class="association-logo-box">
+                                        <!-- Inline Vector SVG of the HxH Double-X Emblem -->
+                                        <svg class="association-logo-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="300" height="200" fill="#fff" />
+                                            <!-- Central Red Diamond -->
+                                            <polygon points="150,22 178,100 150,178 122,100" fill="#E53E3E" />
+                                            <!-- Left X -->
+                                            <polygon points="40,32 75,32 140,168 105,168" fill="#1A1A1A" />
+                                            <polygon points="115,32 150,32 85,168 50,168" fill="#1A1A1A" />
+                                            <!-- Right X -->
+                                            <polygon points="150,32 185,32 250,168 215,168" fill="#1A1A1A" />
+                                            <polygon points="225,32 260,32 195,168 160,168" fill="#1A1A1A" />
+                                            <!-- Top Serif Rectangles -->
+                                            <rect x="35" y="24" width="120" height="8" fill="#1A1A1A" />
+                                            <rect x="145" y="24" width="120" height="8" fill="#1A1A1A" />
+                                            <!-- Bottom Serif Rectangles -->
+                                            <rect x="45" y="168" width="110" height="8" fill="#1A1A1A" />
+                                            <rect x="145" y="168" width="110" height="8" fill="#1A1A1A" />
+                                        </svg>
+                                    </div>
+                                    <!-- Barcode Flex Container -->
+                                    <div class="hunter-barcode">
+                                        <span style="flex-grow: 3;"></span>
+                                        <span style="flex-grow: 1;"></span>
+                                        <span style="flex-grow: 4;"></span>
+                                        <span style="flex-grow: 2;"></span>
+                                        <span style="flex-grow: 1;"></span>
+                                        <span style="flex-grow: 6;"></span>
+                                        <span style="flex-grow: 2;"></span>
+                                        <span style="flex-grow: 1;"></span>
+                                        <span style="flex-grow: 4;"></span>
+                                        <span style="flex-grow: 3;"></span>
+                                        <span style="flex-grow: 1;"></span>
+                                        <span style="flex-grow: 5;"></span>
+                                        <span style="flex-grow: 2;"></span>
+                                        <span style="flex-grow: 8;"></span>
+                                        <span style="flex-grow: 1;"></span>
+                                        <span style="flex-grow: 3;"></span>
+                                        <span style="flex-grow: 4;"></span>
+                                        <span style="flex-grow: 1;"></span>
+                                        <span style="flex-grow: 2;"></span>
+                                        <span style="flex-grow: 6;"></span>
+                                    </div>
+                                </div>
+                                <div class="card-blue-bottom">
+                                    <div class="rune-header-box">
+                                        <span class="rune-text-large">エ ✕ 丄 ✕ 亅 • ４ ✕ ❯</span>
+                                    </div>
+                                    <div class="rune-rows-group">
+                                        <div class="rune-row-small">エ ✕ 亅 • ４ ✕ ❯ ✕ 丄 ✕ 亅 •</div>
+                                        <div class="rune-row-small">✕ ４ ✕ ❯ ✕ 丄 ✕ 亅 • ４ ✕ ❯ ✕ 丄</div>
+                                        <div class="rune-row-small">亅 • ４ ✕ ❯ ✕ 丄 ✕ 亅 • ４ ✕</div>
+                                        <div class="rune-row-small">エ ✕ 亅 • ４ ✕ ❯ ✕ 丄 ✕ 亅 • ４ ✕</div>
+                                    </div>
+                                    <div class="card-action-badge">🔀 Click to Flip License</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Back of the Hunter License Card (Profile Details) -->
+                            <div class="hunter-card-face card-back">
+                                <div class="back-card-header">
+                                    <span class="back-logo">Association ID</span>
+                                    <span class="license-status">LICENSED DOUBLE-STAR HUNTER</span>
+                                </div>
+                                <div class="back-card-body">
+                                    <!-- Photo frame cycling -->
+                                    <div class="profile-details-list" style="padding-top: 10px;">
+                                        <div class="detail-row">
+                                            <span class="detail-label">NAME:</span>
+                                            <span class="detail-value">Phạm Trường Tùng</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">Date of Birth:</span>
+                                            <span class="detail-value">05-01-2006</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">LICENSE NO:</span>
+                                            <span class="detail-value">#6031-2024-2028</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">MAJOR:</span>
+                                            <span class="detail-value">International Economics</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">EMAIL:</span>
+                                            <span class="detail-value">phamtruongtung051@gmail.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="license-expiry-corner">Date of expire: NONE</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Avatar Card Stack (LEFT) -->
+            <div class="hero-avatar-area">
+                <div class="deck-stack" id="pfp-stack" title="Click to cycle cards!">
+                    <div class="deck-card stacked-card card-6" data-index="6" style="--rotation: -11deg; --z-index: 1;">
+                        <div class="deck-card-image-box">
+                            <img src="anh6.jpg" alt="Pham Truong Tung">
+                        </div>
+                        <div class="deck-card-label">
+                            <span>Tung at Greed Island 🐚</span>
+                        </div>
+                    </div>
+                    <div class="deck-card stacked-card card-4" data-index="4" style="--rotation: 7deg; --z-index: 2;">
+                        <div class="deck-card-image-box">
+                            <img src="anh4.jpg" alt="Pham Truong Tung">
+                        </div>
+                        <div class="deck-card-label">
+                            <span>Tung at FTU 🌴</span>
+                        </div>
+                    </div>
+                    <div class="deck-card stacked-card card-3" data-index="3" style="--rotation: -3deg; --z-index: 3;">
+                        <div class="deck-card-image-box">
+                            <img src="anh3.jpg" alt="Pham Truong Tung">
+                        </div>
+                        <div class="deck-card-label">
+                            <span>Tung at NHTS 25 🌊</span>
+                        </div>
+                    </div>
+                    <div class="deck-card stacked-card card-2" data-index="2" style="--rotation: 4deg; --z-index: 4;">
+                        <div class="deck-card-image-box">
+                            <img src="anh2.jpg" alt="Pham Truong Tung">
+                        </div>
+                        <div class="deck-card-label">
+                            <span>Just Tung 🌅</span>
+                        </div>
+                    </div>
+                    <div class="deck-card stacked-card card-1 active" data-index="1" style="--rotation: -8deg; --z-index: 5;">
+                        <div class="deck-card-image-box">
+                            <img src="anh1.jpg" alt="Pham Truong Tung" id="avatar-img">
+                            <div class="sunglasses-overlay hidden">😎</div>
+                        </div>
+                        <div class="deck-card-label">
+                            <span>Tung at FTU Open Tour 🏝️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matrix divider leading to spells section -->
+            <div class="wave-divider-wrapper wave-invert">
+                <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <g class="parallax">
+                        <use href="#gentle-wave" x="48" y="0" class="wave-layer wave-back-s4" />
+                        <use href="#gentle-wave" x="48" y="2" class="wave-layer wave-middle-back-s4" />
+                        <use href="#gentle-wave" x="48" y="4" class="wave-layer wave-middle-s4" />
+                        <use href="#gentle-wave" x="48" y="6" class="wave-layer wave-front-s4" />
+                    </g>
+                </svg>
+            </div>
+        </section>
+        <!-- Experience Section: The Boardwalk -->
+        <section id="experience" class="experience-section">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <h2 class="section-title wavy-text">My Journey</h2>
+                    <p class="section-desc">Milestones where I have actively contributed, grown, and shared memories with wonderful peers</p>
+                </div>
+
+                <div class="experience-boardwalk">
+                    <!-- FTU Forum Item -->
+                    <div class="wooden-signboard left-board">
+                        <div class="board-rope"></div>
+                        <div class="board-body">
+                            <span class="board-badge">Former Active Member</span>
+                            <h3>FTU Forum</h3>
+                            <p class="board-time"> 2024 - 2025</p>
+                            <!-- Club Photo -->
+                            <div class="board-photo-frame" style="background: white; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 3px solid var(--wood-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                                <img src="forum1.jpg" alt="FTU Forum Experience" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
+                            </div>
+                            <p class="board-text">
+                                Contributed to the Foreign Trade University Students' Forum (FTU Forum). An energetic, highly creative hub that refined my collaborative teamwork, active listening, and event coordination capacities.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FTU Forum Radio Item -->
+                    <div class="wooden-signboard right-board">
+                        <div class="board-rope"></div>
+                        <div class="board-body">
+                            <span class="board-badge">Former Active Member &amp; Supporter</span>
+                            <h3>FTU Forum Radio</h3>
+                            <p class="board-time"> 2024 - 2025</p>
+                            <!-- Club Photo -->
+                            <div class="board-photo-frame" style="background: white; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 3px solid var(--wood-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                                <img src="forum2.jpg" alt="FTU Forum Radio Experience" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
+                            </div>
+                            <p class="board-text">
+                                Crafted audio content, scripted warm stories, and hosted weekly podcasts to bridge emotions, thoughts, and community narratives across the university campus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave transition before Sandbox -->
+            <div class="wave-divider-wrapper">
+                <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <g class="parallax">
+                        <use href="#gentle-wave" x="48" y="0" class="wave-layer wave-back-s3" />
+                        <use href="#gentle-wave" x="48" y="2" class="wave-layer wave-middle-back-s3" />
+                        <use href="#gentle-wave" x="48" y="4" class="wave-layer wave-middle-s3" />
+                        <use href="#gentle-wave" x="48" y="6" class="wave-layer wave-front-s3" />
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Achievements Section: G.I. Restricted Slots Directory -->
+        <section id="sandbox" class="sandbox-section">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <h2 class="section-title wavy-text">Achievements Binder</h2>
+                    <p class="section-desc">Inspect my Nen attributes! Things that I feel proud of!</p>
+                </div>
+
+                <!-- Achievements Directory Flat List Container -->
+                <div class="restricted-directory-wrapper">
+                    <div class="restricted-directory-header">
+                        <span class="header-col col-no">Slot No.</span>
+                        <span class="header-col col-rank">Rank</span>
+                        <span class="header-col col-title">Card Name</span>
+                        <span class="header-col col-limit">Max Limit</span>
+                        <span class="header-col col-effect">Achievement Details &amp; Description</span>
+                    </div>
+                    <div class="restricted-directory-body">
+                        
+                        <!-- Row 1: IELTS -->
+                        <div class="directory-row row-achievement">
+                            <span class="row-col col-no">No. 001</span>
+                            <span class="row-col col-rank"><span class="badge-rank rank-a">Rank A</span></span>
+                            <span class="row-col col-title"><span class="card-emoji">🏆</span> IELTS Academic 7.5 Overall</span>
+                            <span class="row-col col-limit">Max: 3</span>
+                            <span class="row-col col-effect">
+                                Achieved an IELTS Academic score of 7.5 Overall, demonstrating English proficiency in academic and international work environments.
+                            </span>
+                        </div>
+                        
+                        <!-- Row 2: Scholarship -->
+                        <div class="directory-row row-achievement">
+                            <span class="row-col col-no">No. 002</span>
+                            <span class="row-col col-rank"><span class="badge-rank rank-s">Rank S</span></span>
+                            <span class="row-col col-title"><span class="card-emoji">📜</span> Achieved FTU Academic Scholarship</span>
+                            <span class="row-col col-limit">Max: 1</span>
+                            <span class="row-col col-effect">
+                                Awarded the Academic Encouragement Scholarship for students with excellent academic performance at Foreign Trade University (FTU).
+                            </span>
+                        </div>
+                        
+                        <!-- Row 3: HSG 11 -->
+                        <div class="directory-row row-achievement">
+                            <span class="row-col col-no">No. 003</span>
+                            <span class="row-col col-rank"><span class="badge-rank rank-a">Rank A</span></span>
+                            <span class="row-col col-title"><span class="card-emoji">🥉</span> Third Prize - Provincial English Olympiad (Grade 11)</span>
+                            <span class="row-col col-limit">Max: 3</span>
+                            <span class="row-col col-effect">
+                                Awarded Third Prize in the Provincial English Olympiad for 11th-grade students.
+                            </span>
+                        </div>
+                        
+                        <!-- Row 4: HSG 12 -->
+                        <div class="directory-row row-achievement">
+                            <span class="row-col col-no">No. 004</span>
+                            <span class="row-col col-rank"><span class="badge-rank rank-a">Rank A</span></span>
+                            <span class="row-col col-title"><span class="card-emoji">🥈</span> Third Prize - Provincial English Olympiad (Grade 12)</span>
+                            <span class="row-col col-limit">Max: 3</span>
+                            <span class="row-col col-effect">
+                                Awarded Third Prize in the Provincial English Olympiad for 12th-grade students.
+                            </span>
+                        </div>
+
+                        <!-- Row 5: Traits -->
+                        <div class="directory-row row-skill" id="traits-row-interactive" style="cursor: pointer;" title="Click to view sweet memories!">
+                            <span class="row-col col-no">No. 005</span>
+                            <span class="row-col col-rank"><span class="badge-rank rank-s">Rank S</span></span>
+                            <span class="row-col col-title"><span class="card-emoji">✨</span> Memory Star</span>
+                            <span class="row-col col-limit">Max: 1</span>
+                            <span class="row-col col-effect">
+                                I cherish making lasting memories with those around me, and I have a profound love for golden sandy beaches and breathtaking coastal landscapes. <strong style="color: #FFD700; font-weight: 800; text-shadow: 0 0 5px rgba(255,215,0,0.5);">[CLICK TO VIEW MEMORIES]</strong>
+                            </span>
+                        </div>
+
+                    
+                        <!-- Row 6: TBD -->
+                        <div class="directory-row row-achievement">
+                            <span class="row-col col-no">No. 006</span>
+                            <span class="row-col col-rank"><span class="badge-rank" style="background: rgba(100,100,100,0.5); border-color: #aaa; color: #fff; text-shadow: none;">Rank Unknown</span></span>
+                            <span class="row-col col-title"><span class="card-emoji">⏳</span> Waiting to be completed...</span>
+                            <span class="row-col col-limit">Unlimited</span>
+                            <span class="row-col col-effect">
+                                Waiting for the user to add more to the binder!
+                            </span>
+                        </div>
+</div>
+                </div>
+
+                <!-- Animated Chibi Green Slimes (NHÍ NHẮN & CUTE) -->
+                <div class="slime-decorations">
+                    <div class="chibi-slime slime-green bounce-1" title="Killua is coming! 🟢">
+                        <div class="slime-body">
+                            <div class="slime-face">
+                                <span class="slime-eye left">.</span>
+                                <span class="slime-eye right">.</span>
+                                <span class="slime-mouth">~</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chibi-slime slime-green bounce-2" title="Squishy slime! 🟢">
+                        <div class="slime-body">
+                            <div class="slime-face">
+                                <span class="slime-eye left">^</span>
+                                <span class="slime-eye right">^</span>
+                                <span class="slime-mouth">o</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Matrix divider leading to spells section -->
+            <div class="wave-divider-wrapper wave-invert">
+                <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <g class="parallax">
+                        <use href="#gentle-wave" x="48" y="0" class="wave-layer wave-back-s4" />
+                        <use href="#gentle-wave" x="48" y="2" class="wave-layer wave-middle-back-s4" />
+                        <use href="#gentle-wave" x="48" y="4" class="wave-layer wave-middle-s4" />
+                        <use href="#gentle-wave" x="48" y="6" class="wave-layer wave-front-s4" />
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+
+
+        <!-- Contact & Guestbook Section: Message in a Bottle -->
+        <section id="contact" class="contact-section">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <h2 class="section-title wavy-text">Spell Card Deck</h2>
+                    <p class="section-desc">Cast a spell and maybe... have fun?</p>
+                </div>
+
+                <!-- Unified Signpost for direct Quote and Traits details -->
+                <div class="wooden-signboard quote-signboard" style="max-width: 900px; margin: 0 auto 40px auto;">
+                    <div class="board-rope"></div>
+                    <div class="board-body" style="padding: 25px 40px; text-align: center;">
+                        <span class="sign-sticker" style="font-size: 1.1rem; color: #fde047;">My favourite spell line....</span>
+                        <blockquote class="quote-text" style="font-size: 1.8rem; color: white; margin-bottom: 12px;">
+                            "Just don't die until you're dead"
+                        </blockquote>
+                        <cite class="quote-author" style="font-size: 1.05rem; color: #94a3b8; display: block; margin-bottom: 15px;">
+                            --Anonymous Hunter--
+                        </cite>
+                        <div class="traits-highlights" style="font-size: 1.05rem; color: var(--wood-text); border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 15px; margin-top: 10px;">
+                            You should enjoy the little detours. To the fullest. Because that's where you'll find the things more important than what you want.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Symmetrical Spell Cards Grid Layout (Perfectly Balanced) -->
+                <div class="spell-cards-grid">
+                    
+                    <!-- Left: Spell Card No. 1017 (Accompany) -->
+                    <div class="gi-spell-card accompany-card">
+                        <div class="card-inner-border">
+                            <div class="card-header-gi">
+                                <span class="card-no">No. 1017</span>
+                                <span class="card-rank">Rank A</span>
+                            </div>
+                            <h3 class="spell-title">SPELL CARD: ACCOMPANY</h3>
+                            <div class="spell-illustration">
+                                <img src="accompany.jpg" alt="Accompany Spell Art" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
+                                <div class="nen-glow"></div>
+                            </div>
+                            <div class="spell-effect-text">
+                                <p class="spell-description">
+                                    <strong>[Accompany Effect]:</strong> Instantly teleports the caster and all nearby companions directly to the user's digital sanctuary! Select a coordinates link below to cast the spell:
+                                </p>
+                                <div class="social-links-grid">
+                                    <a href="https://facebook.com/hellotuilatung" target="_blank" rel="noopener noreferrer" class="social-item fb-link">
+                                        <span class="social-icon">📘</span>
+                                        
+                                    </a>
+                                    <a href="https://youtube.com/@hellotuilatung" target="_blank" rel="noopener noreferrer" class="social-item yt-link">
+                                        <span class="social-icon">🔴</span>
+                                        
+                                    </a>
+                                    <a href="https://instagram.com/hellotuilatung" target="_blank" rel="noopener noreferrer" class="social-item ig-link">
+                                        <span class="social-icon">📸</span>
+                                        
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/pham-tung-1348a6259/" target="_blank" rel="noopener noreferrer" class="social-item ln-link">
+                                        <span class="social-icon">💼</span>
+                                        
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Spell Card No. 1046 (Message Bottle) -->
+                    <div class="gi-spell-card guestbook-card">
+                        <div class="card-inner-border">
+                            <div class="card-header-gi">
+                                <span class="card-no">No. 1046</span>
+                                <span class="card-rank">Rank B</span>
+                            </div>
+                            <h3 class="spell-title">SPELL CARD: MESSAGE BOTTLE</h3>
+                            <div class="spell-illustration">
+                                <div class="floating-bottle-interactive animate-bob" id="bottle-interactive" title="Click to read or cast a message bottle!">
+                                    <div class="bottle-sprite"></div>
+                                    <div class="bottle-glow"></div>
+                                </div>
+                                <div class="nen-glow"></div>
+                            </div>
+                            <div class="spell-effect-text">
+                                <p class="spell-description">
+                                    <strong>[Message Bottle Effect]:</strong> Corks a handwritten parchment scroll into a glass container and casts it into the sea shore. Click the bottle above or button below to cast the spell:
+                                </p>
+                                <div class="guestbook-action">
+                                    <button class="btn-game primary-btn" id="open-guestbook-btn" style="width: 100%; padding: 12px 20px; font-size: 1.1rem; border-radius: 14px;">
+                                        <span>🍾 Cast Message Scroll</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Center/Right: Spell Card No. 1099 (Slime Slam) -->
+                    <div class="gi-spell-card slime-card">
+                        <div class="card-inner-border">
+                            <div class="card-header-gi">
+                                <span class="card-no">No. 1099</span>
+                                <span class="card-rank">Rank C</span>
+                            </div>
+                            <h3 class="spell-title">SPELL CARD: SLIME SLAM</h3>
+                            <div class="spell-illustration slime-illustration">
+                                <div class="cute-slime-icon">
+                                    <div class="cute-slime-body">
+                                        <span class="cute-slime-face">^o^</span>
+                                    </div>
+                                </div>
+                                <div class="nen-glow slime-glow"></div>
+                            </div>
+                            <div class="spell-effect-text">
+                                <p class="spell-description">
+                                    <strong>[Slime Slam Effect]:</strong> Materializes a temporary pocket dimension infested with jumping slimes. Test your reflexes! (30s Time Limit)
+                                </p>
+                                <div class="guestbook-action">
+                                    <button class="btn-game primary-btn" id="open-slime-game-btn" style="width: 100%; padding: 12px 20px; font-size: 1.1rem; border-radius: 14px; background: linear-gradient(135deg, #16a34a, #15803d); border-color: #4ade80;">
+                                        <span>🔨 Play Slime Slam!</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Bottom: Spell Card No. 1018 (Nen Provoker) -->
+                    <div class="gi-spell-card nen-card">
+                        <div class="card-inner-border">
+                            <div class="card-header-gi">
+                                <span class="card-no">No. 1018</span>
+                                <span class="card-rank">Rank A</span>
+                            </div>
+                            <h3 class="spell-title">SPELL CARD: NEN PROVOKER</h3>
+                            <div class="spell-illustration nen-illustration">
+                                <div class="nen-hex">發</div>
+                                <div class="nen-glow" id="nen-card-glow"></div>
+                            </div>
+                            <div class="spell-effect-text">
+                                <div class="guestbook-action" id="nen-action-container">
+                                    <button class="btn-game primary-btn" id="provoke-nen-btn" style="width: 100%; padding: 12px 20px; font-size: 1.1rem; border-radius: 14px; background: linear-gradient(135deg, #6366f1, #4f46e5); border-color: #818cf8;">
+                                        <span>🔍 Reveal Nen Type</span>
+                                    </button>
+                                </div>
+                                <div id="nen-result-container" class="nen-result-container" style="display: none;">
+                                    <h4 id="nen-result-text" class="nen-result-text">Scanning...</h4>
+                                </div>
+                                <p class="spell-description" style="margin-top: 20px;">
+                                    <strong>[Provoker Effect]:</strong> Emits a specialized aura pulse to analyze your latent potential and determine your innate Nen category.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+</div>
+
+                <!-- Custom Floating Bottles in the Sea (User generated logs) -->
+                <div class="sea-bottles-area">
+                    <h3 class="sea-bottles-title">Leave your spells here before going ~~~~~</h3>
+                    <div class="sea-bottles-wrapper" id="bottles-sea">
+                        <!-- Instantiated by JS from LocalStorage. Dynamic floating items -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="beach-footer">
+        <div class="footer-sand-dunes"></div>
+        <div class="footer-content">
+            <p>© 2026 Pham Truong Tung. Inspired by the gentle sound of ocean waves 🌊</p>
+            <p><small>Meticulously designed with a touch of playfulness just for you.</small></p>
+        </div>
+    </footer>
+
+    <!-- Dynamic popup modals moved outside sections directly under body for z-index safety -->
+    
+    <!-- Uncovered G.I. Card Detail Modal/Popup -->
+    <div class="treasure-modal hidden" id="treasure-modal">
+        <div class="modal-content animate-pop gi-card-large">
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <div class="gi-card-inner">
+                <div class="gi-card-header">
+                    <span class="gi-card-no" id="modal-card-no">No. 001</span>
+                    <span class="gi-card-rank" id="modal-card-rank">Rank A</span>
+                </div>
+                <div class="gi-card-title-container">
+                    <h3 class="gi-card-title" id="modal-title">Card Name</h3>
+                </div>
+                <div class="gi-card-illustration-frame">
+                    <div class="gi-card-icon" id="modal-icon">🏆</div>
+                </div>
+                <div class="gi-card-effect-box">
+                    <p class="gi-card-effect-title">Magical Card Effect:</p>
+                    <p class="gi-card-effect-desc" id="modal-description">Detailed description...</p>
+                </div>
+                
+                <!-- Dynamic Carousel for Beach Hobbies (Memory Star) -->
+                <div class="carousel-container hidden" id="beach-carousel">
+                    <div class="carousel-track-wrapper">
+                        <div class="carousel-track" id="carousel-track-inner">
+                            <div class="carousel-slide"><img src="bien1.jpg" alt="Beach Memory 1"></div>
+                            <div class="carousel-slide"><img src="bien2.jpg" alt="Beach Memory 2"></div>
+                            <div class="carousel-slide"><img src="bien3.jpg" alt="Beach Memory 3"></div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn btn-prev" id="carousel-prev-btn">◀</button>
+                        <span class="carousel-indicator" id="carousel-indicator-text">1/3</span>
+                        <button class="carousel-btn btn-next" id="carousel-next-btn">▶</button>
+                    </div>
+                </div>
+                
+                <div class="gi-card-footer">
+                    <span class="gi-card-limit" id="modal-card-limit">Limit: 3</span>
+                </div>
+            </div>
+            <div class="modal-footer" style="margin-top: 15px;">
+                <button id="modal-action-btn" class="btn-game primary-btn" style="padding: 10px 20px; font-size: 1rem; border-radius: 10px;">Add to Binder 🎮</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Bottle message scroll (popup form) -->
+    <div class="scroll-form-container hidden" id="scroll-form">
+        <div class="scroll-paper animate-unroll">
+            <button class="scroll-close" id="scroll-close-btn">&times;</button>
+            <div class="scroll-header">
+                <h3>📜 No. 1046: Message Bottle</h3>
+                <p>Write your greetings, wishes or questions to Tung. It will float along this shore!</p>
+            </div>
+            <form id="guestbook-form">
+                <div class="form-group">
+                    <label for="visitor-name">Your Name:</label>
+                    <input type="text" id="visitor-name" required placeholder="Captain Anonymous..." maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label for="visitor-msg">Your Message:</label>
+                    <textarea id="visitor-msg" required placeholder="Hi Tung! Loving your cozy beach island..." maxlength="200" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn-game primary-btn scroll-btn">🍾 Cast Bottle Out</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <!-- Slime Slam Mini-game Modal -->
+    <div class="slime-game-modal hidden" id="slime-game-modal">
+        <div class="slime-game-container">
+            <button class="modal-close" id="slime-close-btn">&times;</button>
+            <div class="slime-game-header">
+                <h3>🔨 SLIME SLAM!</h3>
+                <div class="slime-stats">
+                    <span id="slime-score">Score: 0</span>
+                    <span id="slime-timer">Time: 30s</span>
+                </div>
+            </div>
+            <div class="slime-play-area" id="slime-play-area">
+                <div id="slime-start-overlay" class="slime-overlay">
+                    <h2>Ready to Slam?</h2>
+                    <p>Whack the slimes! (+10 pts each)</p>
+                    <button class="btn-game primary-btn" id="start-slime-btn">Start Game</button>
+                </div>
+                <div id="slime-game-over-overlay" class="slime-overlay hidden">
+                    <h2>Time's Up!</h2>
+                    <p>Final Score: <span id="final-slime-score">0</span></p>
+                    <button class="btn-game primary-btn" id="restart-slime-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phantom Troupe Spider Night Mode Easter Egg -->
+    <div class="troupe-spider-easter-egg hidden" id="troupe-spider-egg" title="Beware the Phantom Troupe... 🕷️ Click me!">
+        <div class="spider-glow"></div>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="spider-egg-svg">
+            <path d="M100 80 c0-15-5-20-10-20 c-5 0-10 5-10 20 c0 15 5 20 10 20 c5 0 10-5 10-20 Z" fill="rgba(168, 85, 247, 0.85)"/>
+            <ellipse cx="100" cy="120" rx="30" ry="38" fill="rgba(168, 85, 247, 0.85)"/>
+            <path d="M100 95 L100 145 M75 120 L125 120" stroke="#111" stroke-width="4"/>
+            <polygon points="100,95 95,102 105,102" fill="#111"/>
+            <polygon points="100,145 95,138 105,138" fill="#111"/>
+            <path d="M72 100 Q40 90 30 110" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M70 110 Q35 110 25 130" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M72 120 Q40 130 30 150" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M80 135 Q50 160 40 180" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M90 148 Q70 180 60 195" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M85 90 Q60 65 50 45" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            
+            <path d="M128 100 Q160 90 170 110" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M130 110 Q165 110 175 130" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M128 120 Q160 130 170 150" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M120 135 Q150 160 160 180" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M110 148 Q130 180 140 195" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+            <path d="M115 90 Q140 65 150 45" stroke="rgba(168, 85, 247, 0.85)" stroke-width="3" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- JS Logic -->
+    
+    <!-- Background Music -->
+    
+        <source src="nhacnen.mp3" type="audio/mpeg">
+    </audio>
+    <script src="script.js"></script>
+
+    <!-- Background Music -->
+    
+        <source src="nhacnen.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+
+<script>
+console.log('Falling photos inline script starting');
+(() => {
+    const fallingImages = [
+        'a1.jpg', 'a2.jpg', 'a3.jpg', 'a4.jpg', 'a5.jpg', 'a6.jpg', 'a7.jpg',
+        'journey1.jpg', 'journey2.jpg', 'journey3.jpg', 'journey4.jpg', 'journey6.jpg', 'journey7.jpg', 'journey9.jpg'
+    ];
+
+    const fallingContainer = document.createElement('div');
+    fallingContainer.id = 'falling-photos-wrapper';
+    fallingContainer.style.position = 'fixed';
+    fallingContainer.style.top = '0';
+    fallingContainer.style.left = '0';
+    fallingContainer.style.width = '100%';
+    fallingContainer.style.height = '100%';
+    fallingContainer.style.pointerEvents = 'none';
+    fallingContainer.style.zIndex = '99999';
+    
+    document.body.appendChild(fallingContainer);
+
+    function createFallingPhoto() {
+        const photo = document.createElement('div');
+        photo.className = 'falling-photo-container';
+        
+        const img = document.createElement('img');
+        img.src = fallingImages[Math.floor(Math.random() * fallingImages.length)];
+        
+        const width = 60 + Math.random() * 80;
+        img.style.width = width + 'px';
+        photo.appendChild(img);
+        
+        const isLeft = Math.random() > 0.5;
+        if (isLeft) {
+            photo.style.left = `calc(${Math.random() * 15}vw - 40px)`;
+        } else {
+            photo.style.right = `calc(${Math.random() * 15}vw - 40px)`;
+        }
+        
+        const duration = 20 + Math.random() * 30;
+        const delay = Math.random() * -50;
+        const startRot = Math.random() * 360;
+        const endRot = startRot + (Math.random() * 360 - 180);
+        
+        photo.style.setProperty('--start-rot', startRot + 'deg');
+        photo.style.setProperty('--end-rot', endRot + 'deg');
+        photo.style.animationDuration = duration + 's';
+        photo.style.animationDelay = delay + 's';
+        
+        fallingContainer.appendChild(photo);
+    }
+
+    for (let i = 0; i < 24; i++) {
+        createFallingPhoto();
+    }
+})();
+</script>
+\n</body>
+</html>
