@@ -5,13 +5,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, 'Times New Roman (Vietnamese)', Baskerville, Georgia, serif !important;
 }
 
 :root {
     /* Font Families */
-    --font-headers: 'Times New Roman', Times, 'Times New Roman (Vietnamese)', Baskerville, Georgia, serif;
-    --font-body: 'Times New Roman', Times, 'Times New Roman (Vietnamese)', Baskerville, Georgia, serif;
+    --font-headers: 'Fredoka', sans-serif;
+    --font-body: 'Nunito', sans-serif;
 
     /* Transition Speeds */
     --transition-slow: 0.5s ease-in-out;
@@ -277,7 +276,7 @@ body.night-mode .footprint {
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    max-width: 900px;
+    max-width: 98%; padding-left: 30px; padding-right: 30px;
     background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-color) 100%);
     border: 4px solid var(--wood-dark);
     box-shadow: 0 10px 0 var(--wood-dark), 0 15px 25px rgba(0,0,0,0.25);
@@ -286,7 +285,7 @@ body.night-mode .footprint {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 9999;
+    z-index: 99999990;
     transition: border-color var(--transition-slow), background var(--transition-slow);
 }
 
@@ -483,15 +482,39 @@ body.night-mode .footprint {
     justify-content: space-between;
     flex-wrap: wrap;
     position: relative;
-    z-index: 10;
+    z-index: 100000;
     gap: 40px;
 }
 
 .hero-content {
-    max-width: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 680px;
+    max-width: 100%;
     position: relative;
     z-index: 20;
     order: 2; /* Hunter License → RIGHT */
+}
+
+.profile-details-list {
+    padding-top: 10px;
+}
+
+.board-photo-frame {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 3px solid var(--wood-dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.board-photo-frame img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
 .hero-avatar-area {
@@ -1292,7 +1315,7 @@ body.night-mode .sand-sprite {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.4);
-    z-index: 1000;
+    z-index: 100001;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1523,7 +1546,7 @@ body.night-mode .bottle-tip {
     height: 100%;
     background: rgba(0,0,0,0.4);
     backdrop-filter: blur(5px);
-    z-index: 1000;
+    z-index: 100001;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2113,7 +2136,7 @@ body.license-is-flipped .hunter-card-wrapper {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 9999999;
     margin: 0;
 }
 
@@ -2273,12 +2296,12 @@ body.license-is-flipped .hero-avatar-area {
     transform: rotateY(180deg);
     padding: 15px 20px;
     justify-content: space-between;
-    z-index: 1;
+    z-index: 9990;
     pointer-events: none;
 }
 
 .hunter-license-container.flipped .card-back {
-    z-index: 2;
+    z-index: 9991;
     pointer-events: auto;
 }
 
@@ -3059,7 +3082,7 @@ body.day-mode .footer-content small {
     width: 150%;
     height: 150%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 8000;
     overflow: visible;
 }
 
@@ -3093,7 +3116,7 @@ body.day-mode .footer-content small {
     border-radius: 4px;
     padding: 12px 16px;
     color: #f8fafc;
-    z-index: 2;
+    z-index: 99999999;
     opacity: 0;
     pointer-events: none;
     transform: scale(0.9);
@@ -3124,7 +3147,7 @@ body.day-mode .footer-content small {
 /* Specific Panel Positions (Randomized layout) */
 .panel-tl { top: -140px; left: -340px; transform-origin: bottom right; }
 .panel-tr { top: -30px; right: -280px; transform-origin: bottom left; }
-.panel-bl { bottom: -60px; left: -270px; transform-origin: top right; }
+.panel-bl { bottom: -180px; left: -270px; transform-origin: top right; }
 .panel-br { bottom: -120px; right: -320px; transform-origin: top left; }
 
 /* =========================================================
@@ -3727,7 +3750,7 @@ section,
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(0, 0, 0, 0.85);
-    z-index: 9999;
+    z-index: 100001;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3967,7 +3990,7 @@ body.night-mode .carousel-controls {
 .image-modal {
     display: none;
     position: fixed;
-    z-index: 100000;
+    z-index: 100001;
     padding-top: 100px;
     left: 0;
     top: 0;
@@ -4407,10 +4430,7 @@ body.night-mode .carousel-controls {
         display: none !important;
     }
     
-    /* Hide falling photos on mobile to prevent visual clutter */
-    #falling-photos-wrapper {
-        display: none !important;
-    }
+    
     
     /* Ensure the hero section is compact */
     .hero-section {
@@ -4655,10 +4675,9 @@ img, svg, video, iframe {
         flex-direction: column !important;
         align-items: center !important;
         gap: 2px !important;
-        margin-bottom: 5px !important
-
-
-
+        margin-bottom: 5px !important;
+    }
+}
 
 /* =========================================
    MOBILE HERO LAYOUT (CARD & AVATAR DECK)
@@ -4736,10 +4755,7 @@ img, svg, video, iframe {
    DELETE SHUFFLE DECK ON MOBILE (KEEP ONLY ANH1)
    ========================================= */
 @media (max-width: 900px) {
-    /* Hide all cards except the one with anh1.jpg */
-    .deck-stack .stacked-card:not(.card-1) {
-        display: none !important;
-    }
+    /* Restored shuffle deck on mobile */
     
     /* Make the single anh1.jpg card look neat and centered, remove rotations */
     .deck-stack .stacked-card.card-1 {
@@ -4750,10 +4766,7 @@ img, svg, video, iframe {
         box-shadow: 0 8px 20px rgba(0,0,0,0.4) !important;
     }
     
-    /* Completely disable clicking so the JS shuffle cannot be triggered */
-    .hero-avatar-area {
-        pointer-events: none !important;
-    }
+    /* Restored shuffle clicks */
 }
 
 
@@ -4791,3 +4804,97 @@ img, svg, video, iframe {
         margin: 5px auto 0 auto; /* Center on mobile */
     }
 }
+
+@media (max-width: 900px) {
+    .hero-intro-banner { display: none !important; }
+    /* deck-stack display block */
+    .mobile-single-photo { display: none !important; margin: 0 auto; }
+}
+
+
+
+@media (max-width: 900px) {
+    .wooden-nav {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        padding: 8px !important;
+    }
+    .logo-text, .email-text { display: none !important; }
+    .nav-email-link { padding: 4px 8px !important; border-radius: 8px !important; }
+    .music-toggle-btn { margin: 0 !important; }
+}
+
+.image-modal, .treasure-modal, .slime-game-modal { z-index: 99999999 !important; }
+
+@media (max-width: 900px) {
+    .mobile-single-photo {
+        width: 260px;
+        height: 380px;
+        position: relative;
+    }
+    .hunter-license-container {
+        aspect-ratio: auto !important;
+        height: 520px !important;
+    }
+}
+
+
+
+/* Nen Aura Particles */
+.nen-particle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999999;
+    mix-blend-mode: screen;
+    animation: nenFade 0.8s ease-out forwards;
+}
+
+@keyframes nenFade {
+    0% {
+        opacity: 0.8;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.2) translateY(-40px);
+    }
+}
+
+
+@keyframes license-glow {
+    0% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); }
+    50% { filter: drop-shadow(0 0 35px rgba(56, 189, 248, 1)) brightness(1.2); }
+    100% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); }
+}
+.hunter-license-container:not(.flipped) {
+    animation: license-glow 2s infinite ease-in-out;
+}
+
+@keyframes deck-glow-purple {
+    0% { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)); }
+    50% { filter: drop-shadow(0 0 35px rgba(168, 85, 247, 1)) brightness(1.2); }
+    100% { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)); }
+}
+.deck-stack {
+    animation: deck-glow-purple 2s infinite ease-in-out;
+}
+
+
+
+.music-player-container { display: flex; align-items: center; gap: 10px; }
+.music-progress-bar { width: 100px; height: 4px; -webkit-appearance: none; background: rgba(15, 23, 42, 0.5); border-radius: 4px; outline: none; cursor: pointer; box-shadow: inset 0 0 5px rgba(0,0,0,0.5); transition: background 0.3s; }
+.music-progress-bar::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #7dd3fc; cursor: pointer; box-shadow: 0 0 10px rgba(125, 211, 252, 0.8); transition: transform 0.2s; }
+.music-progress-bar::-webkit-slider-thumb:hover { transform: scale(1.3); }
+@media (max-width: 900px) { .music-player-container { width: 100%; flex-direction: column; gap: 4px; justify-content: center; margin-top: 5px; } .music-progress-bar { width: 150px; height: 6px; } }
+
+
+.music-time-display { color: #7dd3fc; font-size: 0.8rem; font-family: 'Courier New', Courier, monospace; min-width: 100px; white-space: nowrap; text-align: center; }
+@media (max-width: 900px) { .music-time-display { font-size: 0.7rem; min-width: 70px; } }
+
+
+
+.music-track-name { color: #7dd3fc; font-size: 0.85rem; font-style: italic; white-space: nowrap; margin-right: 5px; }
+@media (max-width: 900px) { .music-track-name { font-size: 0.75rem; margin-right: 0; margin-bottom: 3px; text-align: center; } }

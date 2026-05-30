@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const hero = document.querySelector(".hero-section");
             if (hero) hero.classList.toggle("hud-active");
         });
-
+    });
 
     // Image Modal Logic
     const modal = document.getElementById("image-modal");
@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    });
 
     // Guestbook Message Bottle
     const guestbookBtns = [document.getElementById("open-guestbook-btn"), document.getElementById("bottle-interactive")];
@@ -211,23 +210,79 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 6. Music Play/Pause
-    const musicBtn = document.getElementById("theme-toggle"); // Often reused for music if theme is removed
+    const musicBtn = document.getElementById("music-toggle");
     const audio = document.getElementById("bg-music");
-    const soundOn = document.querySelector(".sound-on");
-    const soundOff = document.querySelector(".sound-off");
+    let isMusicPlaying = false;
+    
+    function tryPlayMusic() {
+        if (!isMusicPlaying && audio) {
+            audio.play().then(() => {
+                if (musicBtn) musicBtn.textContent = "🔊";
+                isMusicPlaying = true;
+                document.removeEventListener("click", tryPlayMusic);
+                document.removeEventListener("touchstart", tryPlayMusic);
+            }).catch(err => console.log("Autoplay blocked:", err));
+        }
+    }
+
+    if (audio) {
+        tryPlayMusic(); // Try immediately
+        // Fallback for browsers that block autoplay
+        document.addEventListener("click", tryPlayMusic);
+        document.addEventListener("touchstart", tryPlayMusic, {passive: true});
+    }
     
     if (musicBtn && audio) {
-        musicBtn.addEventListener("click", () => {
-            if (audio.paused) {
-                audio.play();
-                if(soundOn) soundOn.classList.remove("hidden");
-                if(soundOff) soundOff.classList.add("hidden");
-            } else {
+        musicBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (isMusicPlaying) {
                 audio.pause();
-                if(soundOn) soundOn.classList.add("hidden");
-                if(soundOff) soundOff.classList.remove("hidden");
+                musicBtn.textContent = "🔇";
+                isMusicPlaying = false;
+                document.removeEventListener("click", tryPlayMusic);
+                document.removeEventListener("touchstart", tryPlayMusic);
+            } else {
+                tryPlayMusic();
             }
         });
+    }
+    
+    // Music progress slider logic
+    const musicProgress = document.getElementById("music-progress");
+    const musicTime = document.getElementById("music-time");
+    let isDragging = false;
+    
+    function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return mins + ":" + (secs < 10 ? "0" : "") + secs;
+    }
+    
+    if (musicProgress && audio) {
+        audio.addEventListener("timeupdate", () => {
+            if (audio.duration) {
+                if (!isDragging) {
+                    musicProgress.value = (audio.currentTime / audio.duration) * 100;
+                }
+                if (musicTime) {
+                    // Update time display even while dragging for real-time scrub feedback
+                    const scrubTime = isDragging ? (musicProgress.value / 100) * audio.duration : audio.currentTime;
+                    musicTime.innerHTML = formatTime(scrubTime) + " / " + formatTime(audio.duration);
+                }
+            }
+        });
+        musicProgress.addEventListener("input", () => {
+            isDragging = true;
+            if (audio.duration) {
+                audio.currentTime = (musicProgress.value / 100) * audio.duration;
+            }
+        });
+        musicProgress.addEventListener("change", () => {
+            isDragging = false;
+        });
+        musicProgress.addEventListener("mouseup", () => { isDragging = false; });
+        musicProgress.addEventListener("touchend", () => { isDragging = false; });
     }
 
     // 7. Slime Game Initialization
@@ -410,7 +465,11 @@ function initPfpStack() {
         card.classList.toggle("active", z === maxZ);
     });
     
+    let isShuffling = false;
     stack.addEventListener("click", () => {
+        if (isShuffling) return;
+        isShuffling = true;
+        
         // Find top card (highest z)
         let topCard = cards.reduce((best, c) =>
             parseInt(c.dataset.z) > parseInt(best.dataset.z) ? c : best
@@ -433,6 +492,7 @@ function initPfpStack() {
                 c.classList.toggle("active", z === maxZ);
             });
             topCard.classList.remove("cycle-out");
+            isShuffling = false;
         }, 450);
     });
 }
@@ -588,48 +648,75 @@ function initCarousel() {
         });
     }
 
-    // 8. Background Music Logic
-    const soundToggleBtn = document.getElementById('sound-toggle');
-    const bgMusic = document.getElementById('bg-music');
-    if (soundToggleBtn && bgMusic) {
-        const soundOnIcon = soundToggleBtn.querySelector('.sound-on');
-        const soundOffIcon = soundToggleBtn.querySelector('.sound-off');
-        
-        soundToggleBtn.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                soundOnIcon.classList.remove('hidden');
-                soundOffIcon.classList.add('hidden');
-            } else {
-                bgMusic.pause();
-                soundOnIcon.classList.add('hidden');
-                soundOffIcon.classList.remove('hidden');
-            }
-        });
-    }
 });
 
-    // Music Toggle Logic
-    const musicBtn = document.getElementById("music-toggle");
-    const bgMusic = document.getElementById("bg-music");
-    let isMusicPlaying = false;
-    
-    if (musicBtn && bgMusic) {
-        // Try to play immediately if browser allows, otherwise wait for click
-        // But usually browsers block autoplay, so we just wait for interaction
-        
-        musicBtn.addEventListener("click", () => {
-            if (isMusicPlaying) {
-                bgMusic.pause();
-                musicBtn.textContent = "🔇";
-                isMusicPlaying = false;
-            } else {
-                bgMusic.play().then(() => {
-                    musicBtn.textContent = "🔊";
-                    isMusicPlaying = true;
-                }).catch(err => {
-                    console.log("Audio playback failed:", err);
-                });
-            }
-        });
+// Nen Aura Cursor Trail
+(function() {
+    const colors = ['#ff3333', '#cc33ff', '#ffcc00', '#33ff33', '#33ccff', '#ff9933'];
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let isMouseActive = false;
+    let lastTouchTime = 0;
+
+    // Mouse events (Desktop)
+    window.addEventListener('mousemove', function(e) {
+        // Prevent synthetic mouse events on mobile from keeping the aura active
+        if (Date.now() - lastTouchTime < 1000) return;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        isMouseActive = true;
+    });
+    window.addEventListener('mouseleave', function() {
+        isMouseActive = false;
+    });
+
+    // Touch events (Mobile)
+    window.addEventListener('touchstart', function(e) {
+        lastTouchTime = Date.now();
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+        isMouseActive = true;
+    }, {passive: true});
+    window.addEventListener('touchmove', function(e) {
+        lastTouchTime = Date.now();
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+        isMouseActive = true;
+    }, {passive: true});
+    window.addEventListener('touchend', function(e) {
+        lastTouchTime = Date.now();
+        if (e.touches.length === 0) {
+            isMouseActive = false;
+        }
+    });
+    window.addEventListener('touchcancel', function() {
+        lastTouchTime = Date.now();
+        isMouseActive = false;
+    });
+
+    function createParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.className = 'nen-particle';
+        const size = Math.random() * 20 + 15;
+        const offsetX = (Math.random() - 0.5) * 35;
+        const offsetY = (Math.random() - 0.5) * 35;
+        const randColor = colors[Math.floor(Math.random() * Math.floor(colors.length))];
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = (x + offsetX - size/2) + 'px';
+        particle.style.top = (y + offsetY - size/2) + 'px';
+        particle.style.backgroundColor = randColor;
+        particle.style.boxShadow = '0 0 ' + (size*1.2) + 'px ' + randColor + ', 0 0 ' + (size/1.5) + 'px white';
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 800);
     }
+
+    // Continuously spawn particles
+    setInterval(() => {
+        if (isMouseActive) {
+            createParticle(mouseX, mouseY);
+            if (Math.random() > 0.7) createParticle(mouseX, mouseY);
+        }
+    }, 40);
+})();
+

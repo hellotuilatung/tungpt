@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pham Tung</title>
-    <meta name="description" content="A magical Greed Island interactive RPG portfolio for Pham Truong Tung - International Economics student @ FTU. Collect binder cards and cast spells!">
+    <meta name="description" content="Welcome to the digital portfolio of Pham Tung - an ambitious Economics student bridging the gap between economic intuition and data science, with a playful Hunter x Hunter theme.">
     
     <!-- Google Fonts: Fredoka & Nunito -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +55,12 @@
             <span class="email-icon">📧</span>
             <span class="email-text">phamtruongtung051@gmail.com</span>
         </a>
-                <button id="music-toggle" class="music-toggle-btn" title="Toggle Music">🔇</button>
+                <div class="music-player-container">
+            <span class="music-track-name">Himiko Kikuchi - Flying Beagle (1987)</span>
+            <button id="music-toggle" class="music-toggle-btn" title="Toggle Music">🔇</button>
+            <input type="range" id="music-progress" class="music-progress-bar" min="0" max="100" value="0" step="0.1">
+            <span id="music-time" class="music-time-display">0:00 / 0:00</span>
+        </div>
         
     </header>
 
@@ -65,11 +70,14 @@
             <!-- ── Hero Intro Banner (Top, Full-width) ── -->
             <div class="hero-intro-banner">
                 <h1 class="hero-title hero-title-big wavy-text">✦&nbsp;Welcome to My Deck&nbsp;✦</h1>
-                <p class="hero-scroll-hint">This is my journey to become a Hunter ^^</p>
+                <p class="hero-scroll-hint" style="max-width: 800px; margin: 0 auto; line-height: 1.6; font-size: 1.1rem; padding: 10px 20px;">
+                    My name is Tung, an International Economics student with a strong interest in global trade, business, and economic development.<br>
+                    Thank you for visiting my portfolio. I hope it provides meaningful insights into who I am ^^.
+                </p>
             </div>
 
             <!-- ── Card Deck (LEFT) & Hunter License (RIGHT) ── -->
-                        <div class="hero-content" style="display: flex; justify-content: center; align-items: center; width: 680px; max-width: 100%;">
+                        <div class="hero-content">
                 <div class="hunter-card-wrapper holographic-hud-wrapper">
                     
                                         <!-- SVG HUD Guidelines (Randomized) -->
@@ -167,7 +175,7 @@
                                 </div>
                                 <div class="card-blue-bottom">
                                     <div class="rune-header-box">
-                                        <span class="rune-text-large">エ ✕ 丄 ✕ 亅 • ４ ✕ ❯</span>
+                                        <span class="rune-text-large">Click to Flip License</span>
                                     </div>
                                     <div class="rune-rows-group">
                                         <div class="rune-row-small">エ ✕ 亅 • ４ ✕ ❯ ✕ 丄 ✕ 亅 •</div>
@@ -175,7 +183,6 @@
                                         <div class="rune-row-small">亅 • ４ ✕ ❯ ✕ 丄 ✕ 亅 • ４ ✕</div>
                                         <div class="rune-row-small">エ ✕ 亅 • ４ ✕ ❯ ✕ 丄 ✕ 亅 • ４ ✕</div>
                                     </div>
-                                    <div class="card-action-badge">🔀 Click to Flip License</div>
                                 </div>
                             </div>
                             
@@ -187,7 +194,7 @@
                                 </div>
                                 <div class="back-card-body">
                                     <!-- Photo frame cycling -->
-                                    <div class="profile-details-list" style="padding-top: 10px;">
+                                    <div class="profile-details-list">
                                         <div class="detail-row">
                                             <span class="detail-label">NAME:</span>
                                             <span class="detail-value">Phạm Trường Tùng</span>
@@ -261,6 +268,15 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Mobile Only Static Image -->
+                <div class="mobile-single-photo" style="display: none; padding-bottom: 20px;">
+                    <div class="deck-card" style="transform: none !important; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                        <div class="deck-card-image-box">
+                            <img src="anh2.jpg" alt="Pham Truong Tung">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Matrix divider leading to spells section -->
@@ -292,8 +308,8 @@
                             <h3>FTU Forum</h3>
                             <p class="board-time"> 2024 - 2025</p>
                             <!-- Club Photo -->
-                            <div class="board-photo-frame" style="background: white; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 3px solid var(--wood-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-                                <img src="forum1.jpg" alt="FTU Forum Experience" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
+                            <div class="board-photo-frame">
+                                <img src="forum1.jpg" alt="FTU Forum Experience">
                             </div>
                             <p class="board-text">
                                 Contributed to the Foreign Trade University Students' Forum (FTU Forum). An energetic, highly creative hub that refined my collaborative teamwork, active listening, and event coordination capacities.
@@ -309,8 +325,8 @@
                             <h3>FTU Forum Radio</h3>
                             <p class="board-time"> 2024 - 2025</p>
                             <!-- Club Photo -->
-                            <div class="board-photo-frame" style="background: white; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 3px solid var(--wood-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-                                <img src="forum2.jpg" alt="FTU Forum Radio Experience" style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
+                            <div class="board-photo-frame">
+                                <img src="forum2.jpg" alt="FTU Forum Radio Experience">
                             </div>
                             <p class="board-text">
                                 Crafted audio content, scripted warm stories, and hosted weekly podcasts to bridge emotions, thoughts, and community narratives across the university campus.
@@ -626,7 +642,7 @@
     <footer class="beach-footer">
         <div class="footer-sand-dunes"></div>
         <div class="footer-content">
-            <p>© 2026 Pham Truong Tung. Inspired by the gentle sound of Greed Island 🌊</p>
+            <p>© 2026 Pham Truong Tung. Inspired by the gentle sound Greed Island 🌊</p>
             <p><small>Meticulously designed with a touch of playfulness.</small></p>
         </div>
     </footer>
@@ -790,7 +806,7 @@ console.log('Falling photos inline script starting');
     fallingContainer.style.width = '100%';
     fallingContainer.style.height = '100%';
     fallingContainer.style.pointerEvents = 'none';
-    fallingContainer.style.zIndex = '99999';
+    fallingContainer.style.zIndex = '1'; /* Moved to back */
     
     document.body.appendChild(fallingContainer);
 
