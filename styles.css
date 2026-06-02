@@ -2125,7 +2125,7 @@ body.night-mode .hud-nen-stats strong {
     height: auto;
     cursor: pointer;
     position: relative;
-    z-index: 5;
+    z-index: 50;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
@@ -3082,7 +3082,7 @@ body.day-mode .footer-content small {
     width: 150%;
     height: 150%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 8000;
     overflow: visible;
 }
 
@@ -3107,6 +3107,7 @@ body.day-mode .footer-content small {
 /* Floating Panels */
 .hud-panel {
     position: absolute;
+    z-index: 1;
     width: 240px;
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(8px);
@@ -3231,9 +3232,9 @@ body.day-mode .footer-content small {
     width: 100%;
     height: 100%;
     background: #0f172a;
-    border: 2px solid #a855f7; /* Purple border */
+    border: 2px solid #ef4444; /* Red border */
     border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 10px rgba(168, 85, 247, 0.3); /* Purple inner glow */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 10px rgba(255, 50, 50, 0.3); /* Red inner glow */
     overflow: hidden;
     transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
                 box-shadow 0.45s ease,
@@ -3252,10 +3253,10 @@ body.day-mode .footer-content small {
 /* Hover: top card lifts straight up, whole deck glows */
 .deck-stack:hover .deck-card.card-1 {
     transform: translateY(-14px) scale(1.04);
-    box-shadow: 0 30px 60px rgba(56, 189, 248, 0.35), inset 0 0 20px rgba(56, 189, 248, 0.3);
+    box-shadow: 0 30px 60px rgba(255, 50, 50, 0.35), inset 0 0 20px rgba(255, 50, 50, 0.3);
 }
 .deck-stack:hover .deck-card {
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 12px rgba(56, 189, 248, 0.25);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 12px rgba(255, 50, 50, 0.25);
 }
 .deck-stack:hover .deck-card-image-box img {
     transform: scale(1.04);
@@ -3290,7 +3291,7 @@ body.day-mode .footer-content small {
     align-items: center;
     justify-content: center;
     background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(56, 189, 248, 0.35);
+    border: 1px solid rgba(255, 50, 50, 0.35);
     border-radius: 6px;
     color: #e0f2fe;
     font-family: var(--font-headers);
@@ -4865,21 +4866,21 @@ img, svg, video, iframe {
 
 
 @keyframes license-glow {
-    0% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); }
-    50% { filter: drop-shadow(0 0 35px rgba(56, 189, 248, 1)) brightness(1.2); }
-    100% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); }
+    0% { filter: drop-shadow(0 0 10px rgba(255, 50, 50, 0.5)); }
+    50% { filter: drop-shadow(0 0 35px rgba(255, 50, 50, 1)) brightness(1.2); }
+    100% { filter: drop-shadow(0 0 10px rgba(255, 50, 50, 0.5)); }
 }
 .hunter-license-container:not(.flipped) {
     animation: license-glow 2s infinite ease-in-out;
 }
 
-@keyframes deck-glow-purple {
-    0% { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)); }
-    50% { filter: drop-shadow(0 0 35px rgba(168, 85, 247, 1)) brightness(1.2); }
-    100% { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)); }
+@keyframes deck-glow-red {
+    0% { filter: drop-shadow(0 0 10px rgba(255, 50, 50, 0.5)); }
+    50% { filter: drop-shadow(0 0 35px rgba(255, 50, 50, 1)) brightness(1.2); }
+    100% { filter: drop-shadow(0 0 10px rgba(255, 50, 50, 0.5)); }
 }
 .deck-stack {
-    animation: deck-glow-purple 2s infinite ease-in-out;
+    animation: deck-glow-red 2s infinite ease-in-out;
 }
 
 
@@ -4898,3 +4899,4 @@ img, svg, video, iframe {
 
 .music-track-name { color: #7dd3fc; font-size: 0.85rem; font-style: italic; white-space: nowrap; margin-right: 5px; }
 @media (max-width: 900px) { .music-track-name { font-size: 0.75rem; margin-right: 0; margin-bottom: 3px; text-align: center; } }
+
