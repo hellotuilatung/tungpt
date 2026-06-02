@@ -3082,7 +3082,7 @@ body.day-mode .footer-content small {
     width: 150%;
     height: 150%;
     pointer-events: none;
-    z-index: 8000;
+    z-index: 1;
     overflow: visible;
 }
 
